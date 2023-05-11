@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/create/article', [ArticleController::class, 'create'])->name('article.create');
+    Route::get('/edit/{id}', [ArticleController::class, 'getEdit'])->name('getArticle.edit');
+    Route::patch('/edit/article/{id}', [ArticleController::class, 'updateArticle'])->name('article.edit');
+    Route::delete('/destroy/article{id}', [ArticleController::class, 'destroyArticle'])->name('article.destroy');
 
 
 });

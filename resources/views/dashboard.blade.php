@@ -8,7 +8,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="mb-2 p-6">{{ __('Vous êtes connecté !') }}</div>
+                {{-- <div class="mb-2 p-6">{{ __('Vous êtes connecté !') }}</div> --}}
+                @if (session('success'))
+                    <div class="alert alert-success">{{ session('success') }}</div>
+                @endif
+
                 <div class="bg-white p-6 text-gray-900">
 
                     <div class="">
@@ -16,9 +20,19 @@
                             x-on:click.prevent="$dispatch('open-modal', 'confirm-send')">
                             {{ __('Publier vouvelle annonce') }}
                         </x-primary-button>
-
+                        {{-- Modal de creation d'article --}}
                         <x-modal name="confirm-send" :show="$errors->articleStore->isNotEmpty()" focusable>
-                            <form method="post" action="{{ route('article.create') }}" enctype="multipart/form-data" class="p-6">
+
+                            @if ($errors->any())
+                                <div class="alert alert-warning">
+                                    @foreach ($errors as $error)
+                                        <div>{{ $error }}</div>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                            <form method="post" action="{{ route('article.create') }}" enctype="multipart/form-data"
+                                class="p-6">
                                 @csrf
                                 @method('post')
 
@@ -50,7 +64,6 @@
                                         placeholder="{{ __('Image') }}" />
                                     <x-input-error :messages="$errors->articleStore->get('prix')" class="mt-2" />
                                 </div>
-
                                 <div class="mt-3 flex justify-end">
                                     <x-secondary-button x-on:click="$dispatch('close')" class="ml-1">
                                         {{ __('Close') }}
@@ -60,13 +73,13 @@
                                         {{ __('Reinitialiser') }}
                                     </x-secondary-button>
 
-
                                     <x-primary-button type="submit" class="ml-1">
                                         {{ __('Envoyer') }}
                                     </x-primary-button>
                                 </div>
                             </form>
                         </x-modal>
+                        {{-- Fin du modal de creation d'article --}}
                     </div>
                 </div>
                 <div class="p-6 text-gray-900">
@@ -82,28 +95,50 @@
                                 <th scope="col">Supprimer</th>
                             </tr>
                         </thead>
-                        @foreach($articles as $article)
-                        <tbody>
-                            <tr>
-                                <th scope="row">{{$article->id}}</th>
-                                <td>{{$article->nom}}</td>
-                                <td class="text_article" >{{$article->description}}</td>
-                                <td>{{$article->prix}}€</td>
-                                <td class="" width="7%" height="7%">
-                                    <img class="rounded-lg" style="border: 1px solid #5b64f1" src="{{asset('storage/upload/'.$article->image)}}"  alt="">
-                                </td>
-                                <td class="editEndDelete">
-                                    <img class="icon-vitmarket" src="{{ asset('icon/editer.png') }}" alt="">
-                                </td>
-                                <td class="editEndDelete">
-                                    <img class="icon-vitmarket" src="{{ asset('icon/supprimer.png') }}" alt="">
-                                </td>
-                            </tr>
-                        </tbody>
-                        @endforeach
+                        @if (count($articles) > 0)
+                            @foreach ($articles as $article)
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">{{ $article->id }}</th>
+                                        <td>{{ $article->nom }}</td>
+                                        <td class="text_article">{{ $article->description }}</td>
+                                        <td>{{ $article->prix }}€</td>
+                                        <td class="" width="5%" height="5%">
+                                            <img class="rounded-lg" style="border: 1px solid #5b64f1"
+                                                src="{{ asset('storage/upload/' . $article->image) }}" alt="">
+                                        </td>
+
+                                        <td class="editEndDelete">
+                                            <a class="btn btn-outline-primary"
+                                                href="{{ route('getArticle.edit', ['id' => $article->id]) }}"
+                                                data-toggle="modal" data-target="#exampleModal">
+                                                <img class="icon-vitmarket" src="{{ asset('icon/editer.png') }}"
+                                                    alt="">
+                                            </a>
+                                        <td class="editEndDelete">
+                                            <form action="{{route('article.destroy',['id'=>$article->id])}}" method="POST">
+                                                @csrf
+                                                @method('delete')
+                                                <button onclick="return(confirm('sans regret ?'))" class="btn btn-outline-danger" type="submit">
+                                                    <img class="icon-vitmarket" src="{{ asset('icon/supprimer.png') }}"alt="">
+                                                </button>
+                                            </form>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            @endforeach
+                        @else
+                            <div class="bg-white p-6 text-gray-900">
+                                <h1>Vous n'avez pas encore publier d'annonce</h1>
+                            </div>
+                        @endif
+
                     </table>
+
+
                     <div class="d-flex justify-content-center">
-                        {{$articles->links()}}
+                        {{ $articles->links() }}
                     </div>
                 </div>
             </div>

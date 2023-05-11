@@ -3,24 +3,28 @@
 namespace App\Http\Controllers\Back;
 
 use App\Models\Article;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\File as FileFacade;
 use Intervention\Image\ImageManagerStatic as Image;
-// use Intervention\Image\Facades\Image;
 
 class ArticleController extends Controller
 {
     //
     public function create(Request $request)
     {
-
         // $user = Auth::user();
         $request->validate(
             [   'nom' => 'required',
                 'description' => 'required | max:250',
                 'prix'=> 'required',
-                'image' => 'required|image|max:1999']);
+                'image' => 'required|image|max:1999'
+            ]);
                 if ($request->hasFile('image')) {
                     $uniqid = uniqid();
                     // Recuperer le nom de l'image saisi par l'utilisateur
@@ -30,12 +34,12 @@ class ArticleController extends Controller
                     $rename = str_replace('','_',$uniqid).'-'.date('d-m-Y-H-i-').$fileName;
 
                     //Telechargement de l'image
-                    $request->file('image')->storeAs('public/image', $rename);
+                    $request->file('image')->storeAs('storage/image', $rename);
 
                     $img = Image::make($request->file('image')->getRealPath());
 
                     //Dimensionner l'image
-                    $img->resize(500, 500);
+                    // $img->resize(500, 500);
 
                     // Imprimer l'icon sur l'image
                     $img->insert(public_path('icon/logovite3.png'), 'bottom-right', 5, 5);
@@ -52,7 +56,85 @@ class ArticleController extends Controller
 
                  ]);
 
-            return Redirect::route('dashboard')->with('status', 'L\'article a bien été ajouté, vous devez attendre la validation par l\'administrateur');
+            return Redirect::route('dashboard')->with('success', 'L\'article a bien été ajouté, vous devez attendre la validation par l\'administrateur');
 
     }
+
+
+    public function getEdit(Request $request)
+    {
+        $article = Article::find($request->id);
+        // $article = DB::select('select * from articles where id = ?',$id);
+            return view('front.edit', ['article'=>$article]);
+    }
+
+    public function updateArticle(Request $request)
+    {
+        // $user = Auth::user();
+        $article = Article::find($request->id);
+        $request->validate(
+            [
+                'nom' => 'required',
+                'description' => 'required | max:250',
+                'prix'=> 'required',
+                'image' => 'image|max:1999'
+            ]);
+        if ($request->hasFile('image')) {
+            $uniqid = uniqid();
+            // Recuperer le nom de l'image saisi par l'utilisateur
+            $file = $request->file('image');
+
+            $originalName = $file->getClientOriginalName();
+            // Renommer le nom de l'image
+            $fileName = str_replace('','_',$uniqid).'-'.date('d-m-Y-H-i-').$originalName;
+
+            //Telechargement de l'image
+            // $request->file('image')->storeAs('public/upload', $rename);
+            $img = Image::make($request->file('image')->getRealPath());
+
+            //Dimensionner l'image
+            // $img->resize(500, 500);
+
+            // Imprimer l'icon sur l'image
+            $img->insert(public_path('icon/logovite3.png'), 'bottom-right', 5, 5);
+
+            // Enregistrer image dans le repertoire
+            $file->move('storage/upload/', $fileName);
+
+            // Supprimer l'ancienne image du repertoire
+            FileFacade::delete(public_path('storage/upload/' .$article->image));
+
+            $article->image = $fileName;
+            $img->save('storage/upload/'.$fileName);
+        }
+
+        $article->nom = $request->nom;
+        $article->description = $request->description;
+        $article->prix = $request->prix;
+        if ($request->image != null){
+            $article->image = $fileName;
+        }
+        $article->save();
+
+
+        // $article->spectacles()->sync($request->spectacles);
+
+        return Redirect::route('dashboard')->with('success', 'L\'article a bien été modifié, vous devez attendre la validation par l\'administrateur');
+
+    }
+
+
+    public function destroyArticle($id)
+    {
+        // dd($request->id);
+        $article = Article::find($id);
+
+        $fileName = $article->image;
+        $file_path = public_path('storage/upload/'.$fileName);
+        unlink($file_path);
+        $article->delete();
+        return Redirect::route('dashboard')->with('success', 'L\'article a bien été supprimé');
+
+    }
+
 }

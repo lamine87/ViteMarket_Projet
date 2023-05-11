@@ -13,13 +13,13 @@ class GetArticleController extends Controller
     // Affichage de la page d'accueil "Interface.blade.php"
     public function index()
     {
-        // $article = Article::all();
+        $article = Article::all();
         $article = DB::table('articles')
-            ->orderBy('created_at', 'desc')->paginate(20);
+            ->orderBy('created_at', 'desc')->paginate(6);
         return view('interface',['articles'=>$article]);
     }
 
- // Affichage de la page Dashboard après Authentification " "
+    // Affichage de la page Dashboard après Authentification " "
     public function getDashboard()
     {
         $user = Auth::user();

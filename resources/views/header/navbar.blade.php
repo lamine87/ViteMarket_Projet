@@ -45,10 +45,24 @@
                 </div>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
+
+        {{-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            {{-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> --}}
-        </form>
+        </form> --}}
+
+        <div class="search-body">
+            <div class="search-box">
+                <input type="text" name="" class="search-txt" placeholder="Tapez pour rechercher" />
+                <a class="search-btn" href="#">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="btn btn-success ml-4">
+            <a href="{{ route('login') }}" class="">Faire une annonce</a>
+        </div>
+
     </div>
 </nav>
 
@@ -73,5 +87,6 @@
                 <a class="nav-link" href="#">Emploi</a>
             </li>
         </ul>
+
     </div>
 </nav>

@@ -44,5 +44,6 @@
                 >{{ __('Modifier avec succès.') }}</p>
             @endif
         </div>
+
     </form>
 </section>
