@@ -3,11 +3,7 @@
         <h2 class="text-lg font-medium text-gray-900">
             {{ __('Informations sur le profil') }}
         </h2>
-    <div>
-        @if (session('success'))
-            <div class="alert alert-success">{{ session('success') }}</div>
-        @endif
-    </div>
+
         <p class="mt-1 text-sm text-gray-600">
             {{ __("Mettez à jour les informations de profil et l'adresse e-mail de votre compte.") }}
         </p>

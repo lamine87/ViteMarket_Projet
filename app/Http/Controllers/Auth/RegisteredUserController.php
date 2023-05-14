@@ -59,7 +59,7 @@ class RegisteredUserController extends Controller
          $user->email = $request->email;
          $user->password = Hash::make($request->password);
          if ($request->avatar != null){
-             $user->avatar = $fileName;
+             $user->avatar = $rename;
          }
          $user->save();
 
@@ -67,6 +67,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOME)->with('success', 'Vous êtes bien connecté');;
     }
 }

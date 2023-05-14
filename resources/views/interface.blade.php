@@ -26,6 +26,27 @@
         @include('header.navbar')
     </header>
     <!--Navbar-->
+    @if (session('success'))
+        <div class="container">
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        </div>
+    @endif
+    @if (session('status'))
+        <div class="container">
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        </div>
+    @endif
+    @if (session('error'))
+        <div class="container">
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        </div>
+    @endif
 
     <div class="container">
         {{-- @ @include('content') --}}
