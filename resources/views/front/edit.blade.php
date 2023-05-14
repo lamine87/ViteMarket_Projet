@@ -50,6 +50,8 @@
                                     value="{{ $article->image }}">
                             </div>
                         </div>
+
+
                     <x-primary-button type="submit" class="mt-2">{{ __('Envoyer') }}</x-primary-button>
             </div>
 

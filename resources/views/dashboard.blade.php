@@ -8,7 +8,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
-                {{-- <div class="mb-2 p-6">{{ __('Vous êtes connecté !') }}</div> --}}
                 @if (session('success'))
                     <div class="alert alert-success">{{ session('success') }}</div>
                 @endif
@@ -105,7 +104,7 @@
                                         <td>{{ $article->prix }}€</td>
                                         <td class="" width="5%" height="5%">
                                             <img class="rounded-lg" style="border: 1px solid #5b64f1"
-                                                src="{{ asset('storage/upload/' . $article->image) }}" alt="">
+                                                src="{{ asset('storage/upload/' .$article->image) }}" alt="">
                                         </td>
 
                                         <td class="editEndDelete">

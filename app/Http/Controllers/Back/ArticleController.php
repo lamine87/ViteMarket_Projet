@@ -34,7 +34,7 @@ class ArticleController extends Controller
                     $rename = str_replace('','_',$uniqid).'-'.date('d-m-Y-H-i-').$fileName;
 
                     //Telechargement de l'image
-                    $request->file('image')->storeAs('storage/image', $rename);
+                    $request->file('image')->storeAs('public/image/', $uniqid.$rename);
 
                     $img = Image::make($request->file('image')->getRealPath());
 
@@ -74,10 +74,10 @@ class ArticleController extends Controller
         $article = Article::find($request->id);
         $request->validate(
             [
-                'nom' => 'required',
-                'description' => 'required | max:250',
-                'prix'=> 'required',
-                'image' => 'image|max:1999'
+                'nom' =>  ['required', 'string', 'max:50'],
+                'description' =>  ['required', 'string', 'max:250'],
+                'prix'=>  ['required', 'string', 'max:50'],
+                'image' => 'image|mimes:jpeg,png,jpg,svg|max:1999'
             ]);
         if ($request->hasFile('image')) {
             $uniqid = uniqid();
@@ -98,12 +98,10 @@ class ArticleController extends Controller
             // Imprimer l'icon sur l'image
             $img->insert(public_path('icon/logovite3.png'), 'bottom-right', 5, 5);
 
-            // Enregistrer image dans le repertoire
-            $file->move('storage/upload/', $fileName);
-
             // Supprimer l'ancienne image du repertoire
             FileFacade::delete(public_path('storage/upload/' .$article->image));
 
+            // Enregistrer image dans le repertoire
             $article->image = $fileName;
             $img->save('storage/upload/'.$fileName);
         }
@@ -128,7 +126,6 @@ class ArticleController extends Controller
     {
         // dd($request->id);
         $article = Article::find($id);
-
         $fileName = $article->image;
         $file_path = public_path('storage/upload/'.$fileName);
         unlink($file_path);

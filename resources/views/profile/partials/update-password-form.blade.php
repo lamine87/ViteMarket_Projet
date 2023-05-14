@@ -15,7 +15,7 @@
 
         <div>
             <x-input-label for="current_password" :value="__('Mot de passe actuel')" />
-            <x-text-input id="current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />
+            <x-text-input id="current_password" name="current_password" type="password" class="mt-1 block w-full" value="password" autocomplete="current-password" />
             <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2" />
         </div>
 
@@ -34,7 +34,7 @@
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Enregistrer') }}</x-primary-button>
 
-            @if (session('status') === 'password-updated')
+            @if (session('status') === 'Mot de passe modifié')
                 <p
                     x-data="{ show: true }"
                     x-show="show"
