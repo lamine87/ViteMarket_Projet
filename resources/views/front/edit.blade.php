@@ -15,7 +15,7 @@
                     @csrf
                     @method('patch')
                     <div class="text-center">
-                        <h2 class="">Mettre à jour votre article</h2>
+                        <strong><h1 class="">Mettre à jour votre article</h1></strong>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
@@ -50,7 +50,6 @@
                                     value="{{ $article->image }}">
                             </div>
                         </div>
-
 
                     <x-primary-button type="submit" class="mt-2">{{ __('Envoyer') }}</x-primary-button>
             </div>

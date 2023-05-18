@@ -8,7 +8,6 @@
     <meta name="description" content="vente">
     <meta name="author" content="Lamine Diarra">
     <title>{{ config('app.name', 'VITEMARKET') }}</title>
-
     <link rel="icon" href="{{ asset('icon/Logo2.png') }}">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
@@ -61,10 +60,11 @@
             {{ $slot }}
         </main>
     </div>
+
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('js/jquery.js') }}"></script>
-<script src="{{ asset('js/bootstrap.js') }}"></script>
-<script src="{{ asset('js/app.js') }}"></script>
 
 </html>

@@ -59,8 +59,9 @@ class RegisteredUserController extends Controller
          $user->email = $request->email;
          $user->password = Hash::make($request->password);
          if ($request->avatar != null){
-             $user->avatar = $rename;
+             $user->avatar = $uniqid.$rename;
          }
+
          $user->save();
 
         event(new Registered($user));

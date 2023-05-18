@@ -53,13 +53,13 @@
         <div class="row">
             @if (count($articles) > 0)
             @foreach ($articles as $article)
-                <div class="card mb-3" style="max-width: 540px;">
+                <div class="card mb-3 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3" style="max-width: 50%;">
                     <div class="row g-0" >
-                        <div class="col-md-4" >
-                            <img src="{{ asset('storage/upload/' . $article->image) }}" width="100%" height="100%" class="img-fluid rounded-start"
+                        <div class="col-md-6" >
+                            <img src="{{ asset('storage/upload/' . $article->image) }}" width="100%" height="100%" class="mb-0 img-fluid rounded-start"
                                 alt="...">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="card-body">
                                 <h5 class="card-title"><strong>{{ $article->nom }}</strong></h5>
                                 <p class="card-text"><strong>{{ $article->prix }} €</strong></p>

@@ -38,7 +38,6 @@ class ProfileController extends Controller
                 'prenom' =>  'string|max:50',
                 'phone'=>  'string|max:50',
                 'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1999',
-
             ]
         );
         if ($request->user()->isDirty('email')) {
