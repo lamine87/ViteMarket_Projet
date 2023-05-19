@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-// use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Front\GetArticleController;
 

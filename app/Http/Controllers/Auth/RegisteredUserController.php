@@ -38,16 +38,13 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1999',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-
         ]);
          if($request->hasFile('avatar')) {
             $uniqid = uniqid();
             // Recuperer le nom de l'image saisi par l'utilisateur
             $fileName = $request->file('avatar')->getClientOriginalName();
-
             // Renommer le nom de l'image
             $rename = str_replace('','_',$uniqid).'-'.date('d-m-Y-H-i-').$fileName;
-
             //Telechargement de l'image
             $request->file('avatar')->storeAs('public/avatar/', $uniqid.$rename);
 
