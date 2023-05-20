@@ -20,10 +20,23 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                <x-dropdown align="right" width="48">
+                <x-dropdown align="right" width="48" >
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div class="mr-4">
+                                @if (Auth::user()->avatar != null)
+                                    <div class="">
+                                        <img class="rounded-lg" style="border-radius: 40%" width="30px" height="30px"
+                                            src="{{ asset('storage/avatar/' .Auth::user()->avatar) }}" alt="">
+                                    </div>
+                                    @else
+                                    <div class="">
+                                        <img class="rounded-lg" style="border-radius: 40%" width="30px" height="30px"
+                                            src="{{ asset('icon/account.png') }}" alt="">
+                                    </div>
+                                @endif
+                            </div>
+                                <div>{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
@@ -74,9 +87,22 @@
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
+            <div class="px-3">
+                <div class="d-inline-block">
+                    @if (Auth::user()->avatar != null)
+                        <div class="">
+                            <img class="" style="border-radius: 40%" width="30px" height="30px"
+                                src="{{ asset('storage/avatar/' .Auth::user()->avatar) }}" alt="">
+                        </div>
+                        @else
+                            <div class="">
+                                <img class="" style="border-radius: 40%" width="30px" height="30px
+                                    src="{{ asset('icon/account.png') }}" alt="">
+                            </div>
+                        @endif
+                </div>
                 <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                {{-- <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div> --}}
             </div>
 
             <div class="mt-3 space-y-1">

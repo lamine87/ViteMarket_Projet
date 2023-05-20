@@ -1,6 +1,6 @@
 @extends('interface')
 @section('content')
-    {{-- <div class="container">
+    <div class="container">
         <div class="row">
             @if (count($articles) > 0)
                 @foreach ($articles as $article)
@@ -31,5 +31,5 @@
                 {{ $articles->links() }}
             </div>
         </div>
-    </div> --}}
+    </div>
 @endsection

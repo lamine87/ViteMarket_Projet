@@ -5,12 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'VITEMARKET') }}</title>
-
+    <meta name="description" content="vente">
+    <meta name="author" content="Lamine Diarra">
+    <title>VITEMARKET</title>
+    <link rel="icon" href="{{ asset('icon/Logo2.png') }}">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('style.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fonts.family.css') }}" rel="stylesheet">
+    @vite(['ressources/css/app.css', 'ressources/js/app.js'])
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>

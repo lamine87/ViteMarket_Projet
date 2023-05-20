@@ -49,6 +49,7 @@ class RegisteredUserController extends Controller
             $request->file('avatar')->storeAs('public/avatar/', $uniqid.$rename);
 
          }
+
          $user = new User();
          $user->name = $request->name;
          $user->prenom = $request->prenom;

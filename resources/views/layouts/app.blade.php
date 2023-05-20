@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description" content="vente">
     <meta name="author" content="Lamine Diarra">
-    <title>{{ config('app.name', 'VITEMARKET') }}</title>
+    <title>VITEMARKET</title>
     <link rel="icon" href="{{ asset('icon/Logo2.png') }}">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">

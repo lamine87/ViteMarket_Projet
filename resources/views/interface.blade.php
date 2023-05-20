@@ -6,12 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="vente">
     <meta name="author" content="Lamine Diarra">
-    <title>{{ config('app.name', 'VITEMARKET') }}</title>
-    <meta name="description" content="vente">
-    <meta name="author" content="Lamine Diarra">
-
+    <title>VITEMARKET</title>
     <link rel="icon" href="{{ asset('icon/Logo2.png') }}">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/fonts.family.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
     @vite(['ressources/css/app.css', 'ressources/js/app.js'])
 
@@ -53,7 +51,7 @@
         <div class="row">
             @if (count($articles) > 0)
             @foreach ($articles as $article)
-                <div class="card mb-3 col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3" style="max-width: 50%;">
+                <div class="card col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3 mr-1" style="max-width: 50%;">
                     <div class="row g-0" >
                         <div class="col-md-6" >
                             <img src="{{ asset('storage/upload/' . $article->image) }}" width="100%" height="100%" class="mb-0 img-fluid rounded-start"
