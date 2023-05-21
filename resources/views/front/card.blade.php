@@ -1,7 +1,6 @@
 @extends('interface')
 @section('content')
-    {{-- <div class="container">
-        <div class="row">
+        {{-- <div class="row">
             @if (count($articles) > 0)
                 @foreach ($articles as $article)
                     <div class="card col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3 mr-1" style="max-width: 50%;">
@@ -30,6 +29,5 @@
             <div class="d-flex justify-content-center">
                 {{ $articles->links() }}
             </div>
-        </div>
-    </div> --}}
+        </div> --}}
 @endsection

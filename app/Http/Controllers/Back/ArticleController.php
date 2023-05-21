@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Categorie;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -53,8 +54,7 @@ class ArticleController extends Controller
                 'prix' => $request->prix,
                 'image' => $rename,
                 'user_id' => auth()->user()->id,
-
-                 ]);
+                 ])->categories()->attach($request->categories);
 
             return Redirect::route('dashboard')->with('success', 'L\'article a bien été ajouté, vous devez attendre la validation par l\'administrateur');
 
@@ -63,9 +63,10 @@ class ArticleController extends Controller
 
     public function getEdit(Request $request)
     {
+        $categorie=Categorie::all();
         $article = Article::find($request->id);
         // $article = DB::select('select * from articles where id = ?',$id);
-            return view('front.edit', ['article'=>$article]);
+            return view('front.edit', ['article'=>$article,'categories'=>$categorie]);
     }
 
     public function updateArticle(Request $request)
@@ -112,11 +113,9 @@ class ArticleController extends Controller
         if ($request->image != null){
             $article->image = $fileName;
         }
+        $article->categories()->sync($request->categories);
+        // dd($request->categories);
         $article->save();
-
-
-        // $article->spectacles()->sync($request->spectacles);
-
         return Redirect::route('dashboard')->with('success', 'L\'article a bien été modifié, vous devez attendre la validation par l\'administrateur');
 
     }

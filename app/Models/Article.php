@@ -13,16 +13,18 @@ class Article extends Model
         'description',
         'prix',
         'user_id',
-        'image'
+        'image',
+        'created_at',
+        'updated_at'
     ];
+
 
     public function user(){
         return $this->hasMany('App\User');
     }
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
-
+    public function categories()
+    {
+        return $this->belongsToMany(Categorie::class);
+    }
 }

@@ -13,6 +13,8 @@
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home </a>
             </li>
+
+
             <li class="nav-item">
                 @if (Route::has('login'))
                     <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -44,24 +46,19 @@
                     <a class="dropdown-item" href="#">Something else here</a>
                 </div>
             </li>
+            <li class="nav-item active">
+                <a href="{{ route('login') }}" class="nav-link btn btn-outline-success" style="margin-left: 2px; margin-right:2px;">Faire une annonce</a>
+            </li>
+
+            <form class="d-flex">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+              </form>
         </ul>
 
         {{-- <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         </form> --}}
 
-        <div class="search-body">
-            <div class="search-box">
-                <input type="text" name="" class="search-txt" placeholder="Tapez pour rechercher" />
-                <a class="search-btn" href="#">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-
-        <div class="btn btn-success ml-4">
-            <a href="{{ route('login') }}" class="">Faire une annonce</a>
-        </div>
 
     </div>
 </nav>

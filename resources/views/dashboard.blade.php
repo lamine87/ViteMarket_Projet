@@ -52,6 +52,20 @@
                                     <x-input-error :messages="$errors->articleStore->get('description')" class="mt-2" />
                                 </div>
                                 <div class="mt-6">
+                                    <x-input-label for="categories" value="{{ __('Catégorie') }}" class="sr-only" />
+                                        <select multiple class="rounded mt-1 block w-3/4" id="categories" name="categories[]">
+                                            @foreach($categories as $categorie)
+                                                <option
+                                                {{old('categorie_id') == $categorie->id ? "selected" : ""}}
+                                                 value="{{$categorie->id}}">
+                                                {{$categorie->nom}}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    <x-input-error :messages="$errors->articleStore->get('categorie')" class="mt-2" />
+                                </div>
+
+                                <div class="mt-6">
                                     <x-input-label for="prix" value="{{ __('Prix') }}" class="sr-only" />
                                     <x-text-input id="prix" name="prix" type="text" class="mt-1 block w-3/4"
                                         placeholder="{{ __('Prix') }}" />

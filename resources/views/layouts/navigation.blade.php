@@ -26,12 +26,12 @@
                             <div class="mr-4">
                                 @if (Auth::user()->avatar != null)
                                     <div class="">
-                                        <img class="rounded-lg" style="border-radius: 40%" width="30px" height="30px"
+                                        <img class="rounded-lg" style="border-radius: 40%" width="25px" height="25px"
                                             src="{{ asset('storage/avatar/' .Auth::user()->avatar) }}" alt="">
                                     </div>
                                     @else
                                     <div class="">
-                                        <img class="rounded-lg" style="border-radius: 40%" width="30px" height="30px"
+                                        <img class="rounded-lg" style="border-radius: 40%" width="25px" height="25px"
                                             src="{{ asset('icon/account.png') }}" alt="">
                                     </div>
                                 @endif
