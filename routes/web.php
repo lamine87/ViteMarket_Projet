@@ -25,8 +25,8 @@ use App\Http\Controllers\Front\GetArticleController;
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/', [GetArticleController::class, 'index'])->name('article.index');
-
 Route::get('/dashboard', [GetArticleController::class, 'getDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/detail/{id}', [GetArticleController::class, 'detail'])->name('article.detail');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/create/article', [ArticleController::class, 'create'])->name('article.create');
     Route::get('/edit/{id}', [ArticleController::class, 'getEdit'])->name('getArticle.edit');
     Route::patch('/edit/article/{id}', [ArticleController::class, 'updateArticle'])->name('article.edit');
-    Route::delete('/destroy/article{id}', [ArticleController::class, 'destroyArticle'])->name('article.destroy');
+    Route::delete('/destroy/article/{id}', [ArticleController::class, 'destroyArticle'])->name('article.destroy');
 
 
 });

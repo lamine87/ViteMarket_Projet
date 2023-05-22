@@ -461,3 +461,58 @@ video {
 /* .flex.justify-between.flex-1 {
     color: black !important;
 } */
+
+.card.col-sm-6:hover{
+    background-color: #F5F5F5;
+}
+body{
+    font-family: cursive;
+}
+.card_detail:hover {
+    text-decoration: none;
+    color: #1313e8;
+}
+.text-gray-500{
+    color: blue;
+}
+
+/* img {
+    width:200px;
+    height:200px; */
+    /* border-radius: 100%; */
+    /* -webkit-animation-name: val1-duration;
+    animation-name: val1-duration;
+    -webkit-animation-duration:2s;
+    animation-duration:2s;
+  } */
+
+  /* @-webkit-keyframes val1-duration {
+     0% {transform:rotate(90deg)}
+    100% {transform:rotate(360deg)}
+  }
+
+  @keyframes val1-duration {
+     0% {transform:rotate(90deg)}
+    100% {transform:rotate(360deg)}
+  } */
+
+
+  img {
+    /* width:200px;
+    height:200px; */
+    /* border-radius: 100%; */
+    -webkit-animation-name: val1-duration;
+    animation-name: val1-duration;
+    -webkit-animation-duration:1s;
+    animation-duration:1s;
+  }
+
+  @-webkit-keyframes val1-duration {
+     0% {transform:rotate(50deg)}
+    100% {transform:rotate(20deg)}
+  }
+
+  @keyframes val1-duration {
+     0% {transform:rotate(90deg)}
+    100% {transform:rotate(20deg)}
+  }

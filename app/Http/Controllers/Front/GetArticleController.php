@@ -18,8 +18,10 @@ class GetArticleController extends Controller
         $article = Article::all();
         $article = DB::table('articles')
             ->orderBy('created_at', 'desc')->paginate(6);
-        return view('interface',['articles'=>$article]);
+        return view('front.card',['articles'=>$article]);
     }
+
+
 
     // Affichage de la page Dashboard après Authentification " "
     public function getDashboard()
@@ -30,6 +32,14 @@ class GetArticleController extends Controller
         $article = DB::table('articles')->where('user_id', '=',$user->id)
             ->orderBy('created_at', 'desc')->paginate(5);
         return view('dashboard',['articles'=>$article,'users'=>$user,'categories'=>$categorie]);
+    }
+
+    public function detail(Request $request)
+    {
+        $article = Article::find($request->id);
+        // $article = DB::table('articles')
+        //     ->orderBy('created_at', 'desc');
+        return view('front.detail',['article'=>$article]);
     }
 
 }

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="p-2 navbar-brand" href="#">
+    <a class="p-2 navbar-brand" href="{{ route('article.index') }}">
         <img class="logo-vitmarket" src="{{ asset('icon/Logo2.ico') }}" alt="">
     </a>
 
