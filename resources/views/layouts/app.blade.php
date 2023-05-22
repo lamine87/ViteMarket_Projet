@@ -11,7 +11,7 @@
     <link rel="icon" href="{{ asset('icon/Logo2.png') }}">
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/fonts.family.css') }}" rel="stylesheet">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
@@ -61,10 +61,10 @@
         </main>
     </div>
 
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/popper.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 </body>
 
 </html>

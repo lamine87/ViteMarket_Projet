@@ -123,8 +123,7 @@
 
                                         <td class="editEndDelete">
                                             <a class="btn btn-outline-primary"
-                                                href="{{ route('getArticle.edit', ['id' => $article->id]) }}"
-                                                data-toggle="modal" data-target="#exampleModal">
+                                                href="{{ route('getArticle.edit', ['id' => $article->id]) }}">
                                                 <img class="icon-vitmarket" src="{{ asset('icon/editer.png') }}"
                                                     alt="">
                                             </a>
