@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Back\ArticleController;
 use App\Http\Controllers\Front\GetArticleController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ use App\Http\Controllers\Front\GetArticleController;
 Route::get('/', [GetArticleController::class, 'index'])->name('article.index');
 Route::get('/dashboard', [GetArticleController::class, 'getDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/detail/{id}', [GetArticleController::class, 'detail'])->name('article.detail');
+Route::get('/map', [GetArticleController::class, 'localisation'])->name('google.map');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,5 +42,11 @@ Route::middleware('auth')->group(function () {
 
 });
 
+// Auth::routes(['verify'=>true]);
+Auth::routes(['verify' => true]);
 
 require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

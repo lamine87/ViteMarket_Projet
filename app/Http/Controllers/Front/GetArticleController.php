@@ -42,6 +42,14 @@ class GetArticleController extends Controller
         return view('front.detail',['article'=>$article]);
     }
 
+    public function localisation(Request $request)
+    {
+        $article = Article::find($request->id);
+
+        return view('google.map',['article'=>$article]);
+    }
+
+
 }
 
 

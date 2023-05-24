@@ -47,6 +47,11 @@
                 <img class="rounded-lg" style="border: 1px solid #5b64f1" width="10%" height="10%"
                     src="{{ asset('storage/avatar/' .$user->avatar) }}" alt="">
             </div>
+            @else
+            <div class="">
+                <img class="rounded-lg" style="border-radius: 40%" width="25px" height="25px"
+                    src="{{ asset('icon/account.png') }}" alt="">
+            </div>
         @endif
 
         <div>

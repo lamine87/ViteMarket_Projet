@@ -18,6 +18,8 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Scripts -->
+
 </head>
 
 <body class="font-sans antialiased">

@@ -12,11 +12,12 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/fonts.family.css') }}" rel="stylesheet">
-    @vite(['ressources/css/app.css', 'ressources/js/app.js'])
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'ressources/js/app.js'])
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+
 </head>
 
 <body class="font-sans text-gray-900 antialiased">

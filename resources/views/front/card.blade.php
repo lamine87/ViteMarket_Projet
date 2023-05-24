@@ -3,7 +3,7 @@
 <div class="row">
     @if (count($articles) > 0)
         @foreach ($articles as $article)
-            <div class="card col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3 mt-2" style="max-width: 50%;">
+            <div class="card col-sm-6 col-md-6 col-lg-4 col-xl-4 mb-3 mt-2" style="max-width: 50%; text-transform : capitalize;">
               <a href="{{ route('article.detail',['id' => $article->id]) }}" class="card_detail">
                 <div class="row g-0">
                     <div class="col-md-6">
@@ -14,7 +14,8 @@
                         <img src="{{ asset('storage/upload/' . $article->image) }}" width="100%"
                             height="100%" class="img-fluid rounded" alt="...">
                         <div class="">
-                            <span class="translate-middle badge rounded-pill bg-primary">
+                            {{-- style="text-transform : capitalize;" --}}
+                            <span class="translate-middle badge rounded-pill bg-success">
                                 <p class="card-text">
                                     <strong>
                                         <?php setlocale(LC_TIME, 'FR');?>

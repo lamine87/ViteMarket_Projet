@@ -29,43 +29,43 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
-    {
-        $request->validate([
-            'name' => ['required', 'string', 'max:50'],
-            'prenom' => ['required', 'string', 'max:50'],
-            'phone' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1999',
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
-         if($request->hasFile('avatar')) {
-            $uniqid = uniqid();
-            // Recuperer le nom de l'image saisi par l'utilisateur
-            $fileName = $request->file('avatar')->getClientOriginalName();
-            // Renommer le nom de l'image
-            $rename = str_replace('','_',$uniqid).'-'.date('d-m-Y-H-i-').$fileName;
-            //Telechargement de l'image
-            $request->file('avatar')->storeAs('public/avatar/', $uniqid.$rename);
+    // public function store(Request $request): RedirectResponse
+    // {
+    //     $request->validate([
+    //         'name' => ['required', 'string', 'max:50'],
+    //         'prenom' => ['required', 'string', 'max:50'],
+    //         'phone' => ['required', 'string', 'max:20'],
+    //         'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+    //         'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:1999',
+    //         'password' => ['required', 'confirmed', Rules\Password::defaults()],
+    //     ]);
+    //      if($request->hasFile('avatar')) {
+    //         $uniqid = uniqid();
+    //         // Recuperer le nom de l'image saisi par l'utilisateur
+    //         $fileName = $request->file('avatar')->getClientOriginalName();
+    //         // Renommer le nom de l'image
+    //         $rename = str_replace('','_',$uniqid).'-'.date('d-m-Y-H-i-').$fileName;
+    //         //Telechargement de l'image
+    //         $request->file('avatar')->storeAs('public/avatar/', $uniqid.$rename);
 
-         }
+    //      }
 
-         $user = new User();
-         $user->name = $request->name;
-         $user->prenom = $request->prenom;
-         $user->phone = $request->phone;
-         $user->email = $request->email;
-         $user->password = Hash::make($request->password);
-         if ($request->avatar != null){
-             $user->avatar = $uniqid.$rename;
-         }
+    //      $user = new User();
+    //      $user->name = $request->name;
+    //      $user->prenom = $request->prenom;
+    //      $user->phone = $request->phone;
+    //      $user->email = $request->email;
+    //      $user->password = Hash::make($request->password);
+    //      if ($request->avatar != null){
+    //          $user->avatar = $uniqid.$rename;
+    //      }
 
-         $user->save();
+    //      $user->save();
 
-        event(new Registered($user));
+    //     // event(new Registered($user));
 
-        Auth::login($user);
+    //     // Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME)->with('success', 'Vous êtes bien connecté');;
-    }
+    //     return redirect(RouteServiceProvider::HOME)->with('success', 'Votre compte à bien été crée vous devez le confirmer avec l\'email que vous avez reçu');
+    // }
 }
